@@ -1,13 +1,12 @@
 {
-  "name": "pux-starter-app",
-  "version": "9.0.0",
-  "description": "Starter Pux application using webpack with hot-reloading.",
+  "name": "Haskell Editor",
+  "version": "0.0.1",
+  "description": "Frontend to Haskell editor",
   "main": "support/index.js",
   "keywords": [
     "pux",
-    "purescript-pux",
-    "boilerplate",
-    "starter-app"
+    "purescript",
+    "haskell"
   ],
   "scripts": {
     "postinstall": "bower cache clean && bower install",
@@ -22,7 +21,7 @@
     "type": "git",
     "url": "git://github.com/alexmingoia/pux-starter-app.git"
   },
-  "author": "Alexander C. Mingoia",
+  "author": "Louis Chan",
   "license": "BSD-3-Clause",
   "bugs": {
     "url": "https://github.com/alexmingoia/pux-starter-app/issues"
