@@ -1,5 +1,5 @@
 {
-  "name": "Haskell Editor",
+  "name": "haskell-editor",
   "version": "0.0.1",
   "description": "Frontend to Haskell editor",
   "main": "support/index.js",

@@ -1,19 +1,12 @@
-# pux-starter-app
+# haskell-editor
 
-Starter [Pux](https://github.com/alexmingoia/purescript-pux/) application using
-webpack with hot-reloading and time-travel debug using
-[pux-devtool](https://github.com/alexmingoia/pux-devtool).
-
-See the [Guide](https://alexmingoia.github.io/purescript-pux) for help learning
-Pux.
-
-![Pux starter app animation](support/pux-starter-app.gif)
+Structure editor for Haskell
 
 ## Installation
 
 ```sh
-git clone git://github.com/alexmingoia/pux-starter-app.git example
-cd example
+git clone https://github.com/louisch/pux-frontend
+cd pux-frontend
 npm install
 npm start
 ```
