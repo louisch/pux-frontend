@@ -4,12 +4,15 @@ import App.Routes (match)
 import App.Layout (Action(PageView), State, view, update)
 import Control.Bind ((=<<))
 import Control.Monad.Eff (Eff)
+import Control.Monad.Eff.Var (($=), get)
+import Control.Monad.Eff.Console (log)
 import DOM (DOM)
-import Prelude (bind, pure)
+import Prelude ((<<<), bind, pure)
 import Pux (App, Config, CoreEffects, fromSimple, renderToDOM, start)
 import Pux.Devtool (Action, start) as Pux.Devtool
 import Pux.Router (sampleUrl)
 import Signal ((~>))
+import WebSocket (Connection(..), URL(..), newWebSocket, runURL)
 
 type AppEffects = (dom :: DOM)
 
@@ -31,6 +34,11 @@ config state = do
 -- | Entry point for the browser.
 main :: State -> Eff (CoreEffects AppEffects) (App State Action)
 main state = do
+  --Connection socket <- newWebSocket (URL "ws://localhost:8888") []
+  --socket.onopen $= \event -> do
+  --  log "Connection opened"
+  --  log <<< runURL =<< get socket.url
+
   app <- start =<< config state
   renderToDOM "#app" app.html
   -- | Used by hot-reloading code in support/index.js
