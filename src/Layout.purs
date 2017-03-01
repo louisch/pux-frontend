@@ -5,7 +5,6 @@ import App.NotFound as NotFound
 import App.Routes (Route(Home, NotFound))
 import Prelude (($), map)
 import Pux.Html (Html, div, h1, text)
-import WebSocket (Connection)
 
 
 data Action
@@ -17,8 +16,12 @@ data Action
 type State =
   { route :: Route
   , text :: AutoComplete.State
-  , socket :: Connection
   }
+
+init :: State
+init =
+  { route: NotFound
+  , text: AutoComplete.init }
 
 update :: Action -> State -> State
 update (PageView route) state = state { route = route }
