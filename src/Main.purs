@@ -1,5 +1,7 @@
 module Main where
 
+
+import App.Effects (AppEffects)
 import App.Routes (match)
 import App.Layout (Action(..), State, view, update)
 import Control.Bind ((=<<))
@@ -9,7 +11,7 @@ import Control.Monad.Eff.Exception (EXCEPTION)
 import Control.Monad.Eff.Var (($=))
 import DOM (DOM)
 import Prelude ((<>), Unit, bind, pure)
-import Pux (App, Config, CoreEffects, fromSimple, renderToDOM, start)
+import Pux (App, Config, CoreEffects, renderToDOM, start)
 import Pux.Devtool (Action, start) as Pux.Devtool
 import Pux.Router (sampleUrl)
 import Signal ((~>))
@@ -17,8 +19,6 @@ import Signal (Signal) as S
 import Signal.Channel (CHANNEL, Channel, channel, send, subscribe) as S
 import WebSocket (WEBSOCKET, Connection(..), URL(URL), newWebSocket, runMessage, runMessageEvent)
 
-
-type AppEffects = (dom :: DOM, ws :: WEBSOCKET)
 
 connectWS :: S.Channel Action -> String -> forall eff. Eff (channel :: S.CHANNEL, err :: EXCEPTION, ws :: WEBSOCKET | eff) Unit
 connectWS channel url = do
@@ -44,7 +44,7 @@ config state = do
 
   pure
     { initialState: state
-    , update: fromSimple update
+    , update: update
     , view: view
     , inputs: [routeSignal, wsSignal] }
 

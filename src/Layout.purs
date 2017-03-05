@@ -1,9 +1,12 @@
 module App.Layout where
 
+
 import App.AutoComplete as AutoComplete
+import App.Effects (AppEffects)
 import App.NotFound as NotFound
 import App.Routes (Route(Home, NotFound))
 import Prelude (($), map)
+import Pux (EffModel, noEffects)
 import Pux.Html (Html, div, h1, text)
 
 
@@ -20,14 +23,15 @@ type State =
 
 init :: State
 init =
-  { route: NotFound
+  { route: Home
   , text: AutoComplete.init }
 
-update :: Action -> State -> State
-update (PageView route) state = state { route = route }
-update (ACAction action) state = state { text = AutoComplete.update action state.text }
-update (ReceiveWSData received) state = state
-update Noop state = state
+update :: Action -> State -> EffModel State Action AppEffects
+update Noop state = noEffects state
+update (PageView route) state = noEffects $ state { route = route }
+update (ACAction action) state =
+  noEffects $ state { text = AutoComplete.update action state.text }
+update (ReceiveWSData received) state = noEffects state
 
 view :: State -> Html Action
 view state =
