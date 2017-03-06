@@ -12,6 +12,7 @@
     "purescript-pux-devtool": "4.1.0"
   },
   "devDependencies": {
+    "purescript-argonaut": "^2.0.0",
     "purescript-arrays": "^3.2.0",
     "purescript-debug": "^2.0.0",
     "purescript-maybe": "^2.0.1",

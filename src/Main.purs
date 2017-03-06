@@ -9,19 +9,19 @@ import Control.Bind ((=<<))
 import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Exception (EXCEPTION)
 import DOM (DOM)
-import Prelude (bind, pure)
+import Prelude (($), bind, pure)
 import Pux (App, Config, CoreEffects, renderToDOM, start)
 import Pux.Devtool (Action, start) as Pux.Devtool
 import Pux.Router (sampleUrl)
 import Signal ((~>))
 import Signal.Channel (CHANNEL)
-import WebSocket (WEBSOCKET)
+import WebSocket (WEBSOCKET, Message(Message))
 
 
 -- | App configuration
 config :: forall eff. State -> Eff (channel :: CHANNEL, dom :: DOM, err :: EXCEPTION, ws :: WEBSOCKET | eff) (Config State Action AppEffects)
 config state = do
-  {wsSignal: wsSignal, sendFunc: sendFunc} <- createSocketSignal "ws://echo.websocket.org"
+  {wsSignal: wsSignal, sendFunc: sendFunc} <- createSocketSignal "ws://localhost:9160"
 
   -- | Create a signal of URL changes.
   urlSignal <- sampleUrl
